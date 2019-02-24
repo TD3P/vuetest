@@ -11,6 +11,7 @@
     </form>
 
     <div class="task-list">
+      
       <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vue-router</label>
       <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vuex</label>
       <label class="task-list__item"><input type="checkbox"><button>EDIT</button>vue-loader</label>
