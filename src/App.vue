@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <h1>TODOリスト</h1>
-    <hr>
-    <router-view></router-view/>
+    <img src="./assets/logo.png">
+    <router-view/>
   </div>
 </template>
 
