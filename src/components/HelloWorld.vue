@@ -3,17 +3,13 @@
   <form>
     <button v-on:click="addTodo()">ADD TASK</button>
     <button>DELETE FINISHED TASKS</button>
-    <!-- <p>input: <input type="text"></p>
-      <p>task:</p> -->
     <p>input: <input type="text" v-model="newTodo" placeholder="edit me"></p>
     <p>task: {{ newTodo }}</p>
   </form>
 
   <div class="task-list">
     <label class="task-list__item" v-for="todo in todos" v-bind:key="todo.text">
-      <input type="checkbox">
-      <button>EDIT</button>
-      {{todo.text}}
+      <input type="checkbox"><button>EDIT</button>{{todo.text}}
     </label>
   </div>
 </div>
@@ -21,29 +17,28 @@
 
 <script>
 export default {
-  data () {
+  data: function () {
     return {
       todos: [{
-        text: 'vue-router',
+        text: 'あ',
         done: false
       },
       {
-        text: 'vuex',
+        text: 'い',
         done: false
       },
       {
-        text: 'vue-loader',
+        text: 'う',
         done: false
       },
       {
         text: 'aホゲホゲ',
         done: true
-      }
-      ],
+      }],
       newTodo: ''
     }
   },
-  method: {
+  methods: {
     addTodo: function (event) {
       let text = this.newTodo && this.newTodo.trim()
       if (!text) {
