@@ -1,15 +1,19 @@
 <template>
 <div>
+  <img src="../assets/todoimg.png" alt="">
   <form>
-    <button v-on:click="addTodo()">ADD TASK</button>
-    <button>DELETE FINISHED TASKS</button>
-    <p>input: <input type="text" v-model="newTodo" placeholder="edit me"></p>
+    <p>新規TODO: <input type="text" v-model="newTodo" placeholder="新しいTODOを入力"></p>
     <p>task: {{ newTodo }}</p>
+    <button v-on:click="addTodo()">追加</button>
+    <button v-on:click="removeifDONE()">削除</button>
   </form>
 
   <div class="task-list">
     <label class="task-list__item" v-for="todo in todos" v-bind:key="todo.text">
-      <input type="checkbox"><button>EDIT</button>{{todo.text}}
+      <input type="checkbox" v-model="todo.done">
+      <input type="checkbox" v-model="todo.editing">
+      <input type="text" v-if="todo.editing" v-model="todo.text">
+      <span v-else>{{todo.text}}hoge</span>
     </label>
   </div>
 </div>
@@ -21,19 +25,8 @@ export default {
     return {
       todos: [{
         text: 'あ',
-        done: false
-      },
-      {
-        text: 'い',
-        done: false
-      },
-      {
-        text: 'う',
-        done: false
-      },
-      {
-        text: 'aホゲホゲ',
-        done: true
+        done: false,
+        editing: false
       }],
       newTodo: ''
     }
@@ -46,9 +39,15 @@ export default {
       }
       this.todos.push({
         text: text,
-        done: false
+        done: false,
+        editing: false
       })
       this.newTodo = ''
+    },
+    removeifDONE: function (event) {
+      for (let i = this.todos.length - 1; i >= 0; i--) {
+        if (this.todos[i].done) this.todos.splice(i, 1)
+      }
     }
   }
 }
@@ -65,6 +64,7 @@ export default {
 }
 .task-list {
     @include flex-vender;
+    margin: 30px auto;
     flex-direction: column;
     align-items: center;
     &__item {
