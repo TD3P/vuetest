@@ -24,7 +24,7 @@ export default {
   data: function () {
     return {
       todos: [{
-        text: 'あ',
+        text: 'ああ',
         done: false,
         editing: false
       }],
